@@ -1,7 +1,8 @@
-import 'package:ecommerce_assignment_module_31/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:ecommerce_assignment_module_31/features/auth/presentation/providers/user_controller_provider.dart';
+import 'package:ecommerce_assignment_module_31/features/auth/presentation/screens/sign_in_screen.dart';
 import 'package:ecommerce_assignment_module_31/features/auth/presentation/widgets/app_logo.dart';
 import 'package:ecommerce_assignment_module_31/features/common/screens/main_nav_holder_screen.dart';
-import 'package:ecommerce_assignment_module_31/features/home/presentation/screens/home_screen.dart';
+
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -22,9 +23,10 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future<void> _moveToNextScreen() async {
     await Future.delayed(const Duration(seconds: 2));
+    await AuthController.getUserData();
     Navigator.pushNamedAndRemoveUntil(
       context,
-      MainNavHolderScreen.name,
+      SignInScreen.name,
       (predicate) => false,
     );
   }

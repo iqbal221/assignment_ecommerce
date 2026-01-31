@@ -9,6 +9,7 @@ import 'package:ecommerce_assignment_module_31/features/home/presentation/widget
 import 'package:ecommerce_assignment_module_31/features/home/presentation/widgets/home_carousel_slider.dart';
 import 'package:ecommerce_assignment_module_31/features/home/presentation/widgets/product_search_field.dart';
 import 'package:ecommerce_assignment_module_31/features/home/presentation/widgets/section_header.dart';
+
 import 'package:ecommerce_assignment_module_31/features/product/presentation/providers/product_list_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -74,12 +75,12 @@ class _HomeScreensState extends State<HomeScreen> {
           }
           return ListView.builder(
             scrollDirection: Axis.horizontal,
-            itemCount: productListProvider.productList.length > 10
-                ? 10
-                : productListProvider.productList.length,
+            itemCount: productListProvider.products.length > 5
+                ? 5
+                : productListProvider.products.length,
             itemBuilder: (context, index) {
               return ProductCard(
-                productModel: productListProvider.productList[index],
+                productModel: productListProvider.products[index],
               );
             },
           );

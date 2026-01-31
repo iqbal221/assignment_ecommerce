@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'package:ecommerce_assignment_module_31/features/auth/data/modules/user_model.dart';
+import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class AuthController {
@@ -23,6 +24,8 @@ class AuthController {
     // Implementation to load user data
     SharedPreferences sharedPrefereces = await SharedPreferences.getInstance();
     String? accessToken = sharedPrefereces.getString(_tokenKey);
+
+    debugPrint("Access Token: $accessToken");
 
     if (accessToken != null) {
       final String? userData = sharedPrefereces.getString(_userKey);

@@ -2,8 +2,10 @@ import 'package:ecommerce_assignment_module_31/features/auth/presentation/screen
 import 'package:ecommerce_assignment_module_31/features/auth/presentation/screens/sign_up_screen.dart';
 import 'package:ecommerce_assignment_module_31/features/auth/presentation/screens/splash_screen.dart';
 import 'package:ecommerce_assignment_module_31/features/auth/presentation/screens/verify_screen.dart';
+import 'package:ecommerce_assignment_module_31/features/category/data/models/category_model.dart';
 import 'package:ecommerce_assignment_module_31/features/common/screens/main_nav_holder_screen.dart';
-import 'package:ecommerce_assignment_module_31/features/home/presentation/screens/home_screen.dart';
+import 'package:ecommerce_assignment_module_31/features/product/presentation/screens/product_details_screen.dart';
+import 'package:ecommerce_assignment_module_31/features/product/presentation/screens/product_list_by_category_screen.dart';
 import 'package:flutter/material.dart';
 
 class AppRoutes {
@@ -17,26 +19,17 @@ class AppRoutes {
     } else if (settings.name == SignInScreen.name) {
       widget = SignInScreen();
     } else if (settings.name == VerifyOTPScreen.name) {
-      widget = VerifyOTPScreen(email: settings.arguments as String);
+      final email = settings.arguments as String;
+      widget = VerifyOTPScreen(email: email);
     } else if (settings.name == MainNavHolderScreen.name) {
       widget = MainNavHolderScreen();
+    } else if (settings.name == ProductListByCategoryScreen.name) {
+      final categoryModel = settings.arguments as CategoryModel;
+      widget = ProductListByCategoryScreen(categoryModel: categoryModel);
+    } else if (settings.name == ProductDetailsScreen.name) {
+      final productId = settings.arguments as String;
+      widget = ProductDetailsScreen(productId: productId);
     }
-    // } else if (settings.name == SignUpScreen.name) {
-    //   widget = SignUpScreen();}
-    // } else if (settings.name == SignInScreen.name) {
-    //   widget = SignInScreen();
-    // } else if (settings.name == VerifyOTPScreen.name) {
-    //   final email = settings.arguments as String;
-    //   widget = VerifyOTPScreen(email: email);
-    // } else if (settings.name == MainNavHolderScreen.name) {
-    //   widget = MainNavHolderScreen();
-    // } else if (settings.name == ProductListByCategoryScreen.name) {
-    //   final categoryModel = settings.arguments as CategoryModel;
-    //   widget = ProductListByCategoryScreen(categoryModel: categoryModel);
-    // } else if (settings.name == ProductDetailsScreen.name) {
-    //   final productId = settings.arguments as String;
-    //   widget = ProductDetailsScreen(productId: productId);
-    // }
 
     return MaterialPageRoute(builder: (ctx) => widget);
   }

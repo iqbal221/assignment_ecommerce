@@ -4,7 +4,7 @@ import 'package:ecommerce_assignment_module_31/core/services/network_caller.dart
 import 'package:ecommerce_assignment_module_31/features/product/data/models/product_model.dart';
 import 'package:flutter/foundation.dart';
 
-class ProductListProvider extends ChangeNotifier {
+class ProductListByCategoryProvider extends ChangeNotifier {
   final int _pageSize = 30;
 
   int _currentPageNo = 0;
@@ -15,11 +15,11 @@ class ProductListProvider extends ChangeNotifier {
 
   bool _loadingMoreData = false;
 
-  final List<ProductModel> _products = [];
+  final List<ProductModel> _productList = [];
 
   String? _errorMessage;
 
-  List<ProductModel> get products => _products;
+  List<ProductModel> get productList => _productList;
 
   bool get initialLoading => _initialLoading;
 
@@ -27,11 +27,11 @@ class ProductListProvider extends ChangeNotifier {
 
   String? get errorMessage => _errorMessage;
 
-  Future<bool> fetchProducts() async {
+  Future<bool> fetchProductList(String categoryId) async {
     bool isSuccess = false;
 
     if (_currentPageNo == 0) {
-      _products.clear();
+      _productList.clear();
       _initialLoading = true;
     } else if (_currentPageNo < _lastPageNo!) {
       _loadingMoreData = true;
@@ -42,7 +42,7 @@ class ProductListProvider extends ChangeNotifier {
 
     _currentPageNo++;
     final NetworkResponse response = await getNetworkCaller().getRequest(
-      url: Urls.productsUrl(_pageSize, _currentPageNo),
+      url: Urls.productsByCategoryUrl(_pageSize, _currentPageNo, categoryId),
     );
     if (response.isSuccess) {
       _lastPageNo ??= response.responseData['data']['last_page'];
@@ -51,7 +51,7 @@ class ProductListProvider extends ChangeNotifier {
           in response.responseData['data']['results']) {
         list.add(ProductModel.fromJson(jsonData));
       }
-      _products.addAll(list);
+      _productList.addAll(list);
       isSuccess = true;
     } else {
       _errorMessage = response.errorMessage;
@@ -68,9 +68,9 @@ class ProductListProvider extends ChangeNotifier {
     return isSuccess;
   }
 
-  Future<void> loadInitialProducts() async {
+  Future<void> loadInitialProductList(String categoryId) async {
     _currentPageNo = 0;
     _lastPageNo = null;
-    await fetchProducts();
+    await fetchProductList(categoryId);
   }
 }

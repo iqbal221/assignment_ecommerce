@@ -1,6 +1,6 @@
 import 'package:ecommerce_assignment_module_31/app/set_up_network_caller.dart';
 import 'package:ecommerce_assignment_module_31/app/urls.dart';
-import 'package:ecommerce_assignment_module_31/core/models/network_response.dart';
+import 'package:ecommerce_assignment_module_31/core/services/network_caller.dart';
 import 'package:ecommerce_assignment_module_31/features/home/data/models/slider_model.dart';
 import 'package:flutter/material.dart';
 

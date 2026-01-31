@@ -1,12 +1,16 @@
 import 'package:ecommerce_assignment_module_31/app/app_colors.dart';
 import 'package:ecommerce_assignment_module_31/features/auth/presentation/providers/user_controller_provider.dart';
 import 'package:ecommerce_assignment_module_31/features/auth/presentation/screens/sign_up_screen.dart';
+import 'package:ecommerce_assignment_module_31/features/cart/presentation/providers/cart_list_provider.dart';
+import 'package:ecommerce_assignment_module_31/features/cart/presentation/screens/cart_list_screen.dart';
 import 'package:ecommerce_assignment_module_31/features/category/presentation/providers/category_list_provider.dart';
 import 'package:ecommerce_assignment_module_31/features/category/presentation/screens/category_list_screen.dart';
 import 'package:ecommerce_assignment_module_31/features/common/providers/main_nav_container_provider.dart';
 import 'package:ecommerce_assignment_module_31/features/home/presentation/providers/home_slider_provider.dart';
 import 'package:ecommerce_assignment_module_31/features/home/presentation/screens/home_screen.dart';
+import 'package:ecommerce_assignment_module_31/features/product/presentation/providers/product_list_by_category_provider.dart';
 import 'package:ecommerce_assignment_module_31/features/product/presentation/providers/product_list_provider.dart';
+import 'package:ecommerce_assignment_module_31/features/wishlist/presentation/screens/wish_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,14 +27,16 @@ class _MainNavHolderScreenState extends State<MainNavHolderScreen> {
   final List<Widget> _screens = [
     HomeScreen(),
     CategoryListScreen(),
-    HomeScreen(),
-    HomeScreen(),
+    CartListScreen(),
+    WishListScreen(),
   ];
 
   @override
   void initState() {
     super.initState();
-    context.read<ProductListProvider>().fetchProductList();
+
+    // context.read<CartListProvider>().fetchCartList();
+    context.read<ProductListProvider>().fetchProducts();
     context.read<CategoryListProvider>().fetchCategoryList();
     context.read<HomeSliderProvider>().getHomeSliders();
   }

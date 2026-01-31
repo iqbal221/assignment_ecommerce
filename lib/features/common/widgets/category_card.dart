@@ -1,5 +1,6 @@
 import 'package:ecommerce_assignment_module_31/app/app_colors.dart';
 import 'package:ecommerce_assignment_module_31/features/category/data/models/category_model.dart';
+import 'package:ecommerce_assignment_module_31/features/product/presentation/screens/product_list_by_category_screen.dart';
 
 import 'package:flutter/material.dart';
 
@@ -12,11 +13,11 @@ class CategoryCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        // Navigator.pushNamed(
-        //   context,
-        //   ProductListByCategoryScreen.name,
-        //   arguments: categoryModel,
-        // );
+        Navigator.pushNamed(
+          context,
+          ProductListByCategoryScreen.name,
+          arguments: categoryModel,
+        );
       },
       child: Column(
         children: [
